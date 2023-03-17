@@ -25,14 +25,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
+            <h1> <marquee direction="left" scrollamount="5" >
+            <strong class="m-0">DASHBOARD PENGADUAN MASYARAKAT</strong>
+</h1> </marquee> 
+<img src="gambar/logo4.jpg" alt="Image" height="400" width="700">
+<!-- <img src="{{asset('gambar/logo4.jpg')}}" class="img-circle elevation-2" alt="User Image"> -->
           </div><!-- /.col -->
-          <div class="col-sm-6">
+          <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Starter Page</li>
             </ol>
-          </div><!-- /.col -->
+          </div> -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -44,7 +48,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row">
           <div class="col-lg-6">
             <div class="card">
-              <div class="card-body">
+              <!-- <div class="card-body">
                 <h5 class="card-title">Card title</h5>
 
                 <p class="card-text">
@@ -54,11 +58,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <a href="#" class="card-link">Card link</a>
                 <a href="#" class="card-link">Another link</a>
-              </div>
+              </div> -->
             </div>
 
-            <div class="card card-primary card-outline">
-              <div class="card-body">
+            <!-- <div class="card card-primary card-outline"> -->
+              <!-- <div class="card-body">
                 <h5 class="card-title">Card title</h5>
 
                 <p class="card-text">
@@ -67,13 +71,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
                 <a href="#" class="card-link">Card link</a>
                 <a href="#" class="card-link">Another link</a>
-              </div>
+              </div> -->
             </div><!-- /.card -->
           </div>
           <!-- /.col-md-6 -->
           <div class="col-lg-6">
             <div class="card">
-              <div class="card-header">
+              <!-- <div class="card-header">
                 <h5 class="m-0">Featured</h5>
               </div>
               <div class="card-body">
@@ -81,10 +85,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
+              </div> -->
             </div>
 
-            <div class="card card-primary card-outline">
+            <!-- <div class="card card-primary card-outline">
               <div class="card-header">
                 <h5 class="m-0">Featured</h5>
               </div>
@@ -93,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
+              </div> -->
             </div>
           </div>
           <!-- /.col-md-6 -->

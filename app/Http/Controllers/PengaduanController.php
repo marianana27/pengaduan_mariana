@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pengaduan;
+use App\Tanggapan;
+use Iluminate\Support\Facedes\DB;
 
 class PengaduanController extends Controller
 {
@@ -12,10 +14,12 @@ class PengaduanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+        $tanggapan = Tanggapan::all();
         $pengaduan = Pengaduan::all();
-        return view('pengaduan.index', compact('pengaduan'));
+        return view('pengaduan.index', compact('pengaduan','tanggapan'));
     }
 
     /**
@@ -25,7 +29,8 @@ class PengaduanController extends Controller
      */
     public function create()
     {
-        return view('Pengaduan.create');
+        $pengaduan = Pengaduan::all();
+        return view('pengaduan.create', compact('pengaduan'));
     }
 
     /**
@@ -42,19 +47,22 @@ class PengaduanController extends Controller
             'isi_laporan' => 'required',
             'foto' => 'required',
             'status' => 'required'
+
         ]);
- 
-        // Pengaduan::create($request->all());
+
+        $imgName = $request->foto->getClientOriginalName() . '-' . time() . '-' . $request->foto->extension();
+        $request->foto->move(public_path('image'),$imgName);
+
         Pengaduan::create([
             'tgl_pengaduan' => $request->tgl_pengaduan,
             'nik' => $request->nik,
             'isi_laporan' => $request->isi_laporan,
-            'foto' => $request->foto,
-            'status' => $request->status  
+            'foto' => $imgName,
+            'status' => $request->status
+
         ]);
 
-        // return redirect()->route('Pengaduan.index');
-        return redirect('/pengaduan');
+        return redirect('/pengaduan')->with('info', 'Data Berhasil Ditambah');
     }
 
     /**
@@ -74,9 +82,9 @@ class PengaduanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_pengaduan)
+    public function edit($id)
     {
-        $pengaduan = Pengaduan::find($id_pengaduan);
+        $pengaduan = Pengaduan::where('id_pengaduan',$id)->first();
         return view('pengaduan.edit', compact('pengaduan'));
     }
 
@@ -87,8 +95,9 @@ class PengaduanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id_pengaduan,Request $request)
+    public function update(Request $request, $id)
     {
+        // dd($request->all());
         $this->validate($request,[
             'tgl_pengaduan' => 'required',
             'nik' => 'required',
@@ -97,13 +106,13 @@ class PengaduanController extends Controller
             'status' => 'required',
         ]);
 
-        $pengaduan = Pengaduan::find($id_pengaduan);
-        $pengaduan->tgl_pengaduan = $request->tgl_pengaduan;
-        $pengaduan->nik = $request->nik;
-        $pengaduan->isi_laporan = $request->isi_laporan;
-        $pengaduan->foto = $request->foto;
-        $pengaduan->status = $request->status;
-        $pengaduan->save();
+      $pengaduan =  Pengaduan::find($id);
+    		$pengaduan->tgl_pengaduan = $request->tgl_pengaduan;
+    		$pengaduan->nik = $request->nik;
+            $pengaduan->isi_laporan = $request->isi_laporan;
+            $pengaduan->foto = $request->foto;
+            $pengaduan->status = $request->status;
+            $pengaduan->save();
         return redirect('/pengaduan');
     }
 
@@ -116,6 +125,13 @@ class PengaduanController extends Controller
     public function destroy($id)
     {
         pengaduan::where('id_pengaduan',$id)->delete();
-        return redirect('/pengaduan');
+        return redirect('/pengaduan')->with('info', 'Data Berhasil Dihapus');
+    }
+    public function cetakform(){
+        return view('pengaduan.cetak');
+    }
+    public function cetak_pdf($id){
+        $pengaduan= Pengaduan::find($id);
+        return view('pengaduan.cetak-pengaduan-pertanggal', compact('pengaduan'));
     }
 }

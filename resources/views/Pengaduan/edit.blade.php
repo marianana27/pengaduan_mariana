@@ -10,10 +10,9 @@
         <div class="container">
             <div class="card mt-5">
                 <div class="card-header text-center">
-                    CRUD Data pengaduan
+                    Edit Data pengaduan
                 </div>
                 <div class="card-body">
-                    <a href="/pengaduan" class="btn btn-primary">Kembali</a>
                     <br/>
                     <br/>
                     
@@ -21,7 +20,7 @@
                     <form method="post" action="/pengaduan/update/{{ $pengaduan->id_pengaduan }}">
  
                         {{ csrf_field() }}
-                        {{ method_field('GET') }}
+                        {{ method_field('PUT') }}
  
                         <div class="form-group">
                             <label>Tanggal Pengaduan</label>
@@ -63,9 +62,10 @@
                             <div class="form-group">
                             <label>Status</label>
                             <iselect name="status' class="form-control">
-                                <option>- pilih -</option>
-                                <option>- proses -</option>
-                                <option>- selesai -</option>
+                               <br>
+                                <input type="radio" name="status" value="proses"> Proses</p>
+                                 <input type="radio" name="status" value="proses"> Selesai</p>
+</br>
                             </select>
  
                             @if($errors->has('isi_laporan'))
@@ -77,7 +77,7 @@
  
                         <div class="form-group">
                             <input type="submit" class="btn btn-success" value="Simpan">
-                            <input type="submit" class="btn btn-sm btn-primary" value="edit">
+                            <a href="/pengaduan" class="btn btn-primary" >Kembali</a>
                         </div>
  
                     </form>
